@@ -1,3 +1,12 @@
 $kind: http-request
-url: ""
+url: "{{baseUrl}}/productos?baseUrl=127.0.0.1:8080&id=1"
 method: GET
+queryParams:
+  - key: baseUrl
+    value: 127.0.0.1:8080
+    disabled: false
+    description: ""
+  - key: id
+    value: "1"
+    disabled: false
+    description: ""

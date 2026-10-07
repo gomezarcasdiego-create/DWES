@@ -1,4 +1,26 @@
 $kind: http-request
-url: ""
-method: GET
+url: "{{baseUrl}}/api/prdocutos?baseUrl=127.0.0.1:8080&id=1"
+method: POST
+queryParams:
+  - key: baseUrl
+    value: 127.0.0.1:8080
+    disabled: false
+    description: ""
+  - key: id
+    value: "1"
+    disabled: false
+    description: ""
+body:
+  type: json
+  content: "{\r
+
+    \    \"nombre\": \"nuevo\", \r
+
+    \    \"precio\": 22.5,\r
+
+    \    \"stock\": 23\r
+
+    \r
+
+    }"
 order: 1599572482719743

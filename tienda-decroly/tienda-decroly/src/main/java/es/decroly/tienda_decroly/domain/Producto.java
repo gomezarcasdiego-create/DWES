@@ -18,6 +18,9 @@ public class Producto {
 
     }
 
+    public Producto(Long id, String nombre, double precio, int stock, Long id1) {
+    }
+
     public Long getId() {
         return id;
     }
