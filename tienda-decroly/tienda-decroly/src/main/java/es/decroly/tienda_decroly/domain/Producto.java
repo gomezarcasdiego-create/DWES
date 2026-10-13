@@ -1,24 +1,20 @@
 package es.decroly.tienda_decroly.domain;
 
 public class Producto {
-
     private Long id;
     private String nombre;
     private double precio;
     private int stock;
+
+
+    public Producto() {
+    }
 
     public Producto(Long id, String nombre, double precio, int stock) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
-    }
-
-    public Producto() {
-
-    }
-
-    public Producto(Long id, String nombre, double precio, int stock, Long id1) {
     }
 
     public Long getId() {
@@ -51,5 +47,8 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+    public double getPrecioConIva(){
+        return precio * 1.21;
     }
 }
