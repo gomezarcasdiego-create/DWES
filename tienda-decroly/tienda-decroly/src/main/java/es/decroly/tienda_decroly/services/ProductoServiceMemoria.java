@@ -1,6 +1,8 @@
 package es.decroly.tienda_decroly.services;
 
 import es.decroly.tienda_decroly.domain.Producto;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperties;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 
@@ -9,6 +11,7 @@ import java.util.List;
 
 
 @Service
+@ConditionalOnProperty(name = "tienda.productos.origen", havingValue = "memoria", matchIfMissing = true)
 public class ProductoServiceMemoria extends ProductoServiceBase {
 
 

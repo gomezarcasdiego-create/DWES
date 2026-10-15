@@ -4,8 +4,15 @@ import es.decroly.tienda_decroly.domain.Producto;
 import es.decroly.tienda_decroly.exceptions.BadRequestException;
 import es.decroly.tienda_decroly.exceptions.NotFoundException;
 import es.decroly.tienda_decroly.services.ProductoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,16 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Tag(name = "Productos", description = "Catalogo de productos")
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/productos")
 public class ProductoRestController {
 
     private final ProductoService productoService;
-
-    public ProductoRestController(/*@Qualifier("productoServiceMemoria") Con Qualifier definimos la implementacion del servicio a utilizar
-     */ ProductoService productoService) {
-        this.productoService = productoService;
-    }
 
     @PostMapping()
     public Producto crear(@RequestBody Producto producto) {
@@ -34,6 +38,12 @@ public class ProductoRestController {
     public List<Producto> listar() {
         return productoService.listar();
     }
+
+    @Operation(summary = "Consultar un producto por su id")
+    @ApiResponse(responseCode = "200", description = "producto encontrado")
+    @ApiResponse(responseCode = "400", description = "no existe el producto",
+        content = @Content(
+                schema = @Schema(implementation = ProblemDetail.class)))
 
     @GetMapping("/{id}")
     public Producto buscarPorId(@PathVariable Long id) {
