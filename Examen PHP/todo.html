@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+echo  "Parte1" . "<br>" . "<br>";
+$productos = [
+
+    ["nombre" => "Teclado",  "precio" => 25.50,  "stock" => 12],
+
+    ["nombre" => "Ratón",    "precio" => 15.00,  "stock" => 3],
+
+    ["nombre" => "Monitor",  "precio" => 120.00, "stock" => 7],
+
+    ["nombre" => "Webcam",   "precio" => 45.90,  "stock" => 0],
+
+];
+foreach ($productos as $producto){ //recorro el array
+echo "El nombre del producto es:" . $producto["nombre"]."<br>";//pinto todos los datos de lo objetos
+echo "El precio del producto es:" . $producto["precio"]. "<br>";//pinto todos los datos de lo objetos
+echo "El stock del producto es:" . $producto["stock"]. "<br>" . "<br>"; //pinto todos los datos de lo objetos
+};
+
+echo "Parte2" ."<br>". "<br>";
+foreach ($productos as $producto) {
+
+$totalPrecio = $producto["precio"]; //Calculo el total de precio de cada articulo
+
+$totalGeneral = $producto["precio"] * $producto["stock"];
+
+echo "El precio total de: " . $producto["nombre"] . ": " . number_format($totalGeneral) . " €<br>" . "<br>";
+
+$total += $totalGeneral; //Hace una suma total y se va sumando tambien con el precio de cada articulo arriba suyo
+echo "El precio de todo es: " . $total . "<br>" . "<br>";
+
+};
+
+
+echo  "Parte3" . "<br>" . "<br>";
+foreach($productos as $producto) {
+ 
+if($producto["stock"] < 5 && $producto["stock"] > 0){ //Compruebo los que tiene menos de 5 en stock
+echo "El producto " . $producto["nombre"] . " tiene menos de 5 Productos" . "<br>" . "<br>";
+};
+if($producto["stock"] <= 0){ //Compruebo los que tienen el stock vacio
+echo "El producto " . $producto["nombre"] . " tiene menos de 0 Productos" . "<br>" . "<br>";
+};
+};
+
+
+
+echo  "Parte4" . "<br>" . "<br>";
+foreach($productos as $producto) {
+if($producto["precio"] >= 120){//Mirando el precio mas caro, lo igualo a el
+echo "El " . $producto["nombre"] . " es el mas caro" . "<br>" . "<br>";
+};
+if($producto["stock"] >= 12){//Mirando el producto que mas stock tiene lo igualo a el
+echo "El " . $producto["nombre"] . " es el que mas stock tiene" . "<br>" . "<br>";
+};
+};
+
+
+
+
+echo  "Parte5" . "<br>" . "<br>";
+foreach($productos as $producto) {
+if($producto["stock"] <= 0){// Compruebo los que tiene el stock agotado
+echo "El producto " . $producto["nombre"] . " esta agotado";
+};
+};
+?> 
+
+</body>
+</html>
