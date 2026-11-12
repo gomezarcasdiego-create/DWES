@@ -1,0 +1,45 @@
+¿Cómo se implementa OpenAPI en Spring Boot?
+OpenAPI es una herramienta que permite documentar y visualizar las API REST de una aplicación. Su función principal es mostrar los diferentes endpoints disponibles, los métodos HTTP que utiliza (GET, POST, PUT y DELETE), los parámetros necesarios y las respuestas que devuelve cada petición.
+
+Para implementar OpenAPI en un proyecto Spring Boot, normalmente se utiliza la dependencia SpringDoc OpenAPI.
+1. Añadir la dependencia
+Lo primero es añadir la dependencia de SpringDoc en el archivo pom.xml del proyecto:
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.8.14</version>
+</dependency>
+
+Esta dependencia permite generar automáticamente la documentación de nuestra API y visualizarla mediante Swagger UI.
+2. Ejecutar el proyecto
+Una vez añadida la dependencia, iniciamos nuestra aplicación Spring Boot. SpringDoc detectará automáticamente los controladores (Controller) y los endpoints que hayamos creado.
+3. Acceder a Swagger UI
+Cuando la aplicación esté funcionando, podemos acceder desde el navegador a la siguiente dirección:
+
+http://localhost:8080/swagger-ui/index.html
+
+Aquí aparecerá una interfaz gráfica donde podremos consultar todos los endpoints de nuestra aplicación.
+4. Documentar los endpoints
+OpenAPI permite añadir anotaciones para explicar mejor el funcionamiento de cada endpoint.
+
+Por ejemplo:
+@Operation(summary = "Obtener todos los libros")
+@GetMapping
+public List<Libro> listarLibros() {
+    return libroService.listarLibros();
+}
+
+La anotación @Operation permite añadir una descripción al endpoint para que cualquier persona pueda entender qué función realiza.
+
+También podemos utilizar otras anotaciones:
+- @Tag: agrupa los endpoints por categorías.
+- @Operation: describe la función de un endpoint.
+- @Parameter: explica los parámetros que recibe una petición.
+- @ApiResponse: documenta las posibles respuestas de una petición.
+5. Probar los endpoints
+Una de las principales ventajas de Swagger UI es que permite probar los endpoints directamente desde el navegador, sin necesidad de utilizar herramientas externas como Postman.
+
+Para ello, seleccionamos un endpoint, pulsamos en Try it out, introducimos los datos necesarios y ejecutamos la petición con Execute.
+Conclusión
+OpenAPI facilita el desarrollo y mantenimiento de una API REST porque permite tener toda su documentación organizada y accesible desde una interfaz visual. Además, ayuda a comprobar que los diferentes endpoints funcionan correctamente y facilita que otros desarrolladores puedan entender cómo utilizar nuestra aplicación.
+Importante para tu examen de Spring Boot: recuerda que OpenAPI documenta la API, mientras que Swagger UI es la interfaz que permite visualizar esa documentación y probar las peticiones.
